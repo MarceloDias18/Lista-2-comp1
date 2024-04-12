@@ -1,0 +1,174 @@
+import math
+
+#Lista 2
+#exercicio 1
+#a)
+print(max(3,2.8,3.9))
+print(min(7,2,4,1,0))
+
+#b) Faca uma funcao que calcule e retorne a media de tres numeros inteiros. 
+
+def media (x, y, z): #calcula a média aritmética entre tres numeros x y e z, de tipo int
+    a = (x + y + z)/3 # efetua o calculo necessário
+    return a #retorna a variavel, como int ou float
+print(media(1,2,3))
+
+#c) Faca uma funcao que retorne, dados tres numeros, a diferenca do maior deles com a media ́(obrigatoriamente use a funcao desenvolvida no item b).
+
+def diferença_maior_media(x, y, z): #
+    a = max(x,y,z) #utiliza a função max para estabelecer o maior valor entre os dados
+    b = media(x,y,z) #utiliza a função feita previamente para estabelecer a media entre os dados
+    
+    return a - b #recebe os tres numeros, tipo int ou float, estabelece o maior, e calcula a diferença entre ele e a média aritmética, também int ou float
+print(diferença_maior_media(1,2,3)
+    
+# d)Faca uma funcao que retorne, dados tres numeros, a soma do menor deles com a media (obrigatoriamente use a funcao desenvolvida no item b).
+
+def soma_menor_media(x, y, z):
+    a = min(x, y, z) #utiliza a função min para estabelecer o menor valor entre os dados
+    b = media(x, y, z) #utiliza a função feita previamente para estabelecer a media entre os dados
+    return a + b #recebe os tres numeros, tipo int ou float, estabelece o menor, e calcula a soma entre ele e a média aritmética, também int ou float
+print(soma_menor_media(1,2,3)
+#exercicio 2
+
+#a)
+
+def delta (a, b ,c):
+    d = (b**2 - 4*a*c)
+    return d #recebe os tres numeros, tipo int ou float, e calcula o discriminante, ou delta, do polinômio
+
+#b)
+
+def primeira_raiz(a, b, c): 
+    discriminante = delta(a, b, c) #chama a funçao delta para facilitar o calculo
+    if discriminante < 0: #diferencia as possibilidades da função
+         return "Não há raízes reais"
+    else:
+         return (-b + math.sqrt(discriminante))/(2*a) #retorna o desejado pelo exercicio
+
+a = int(input("a: ")) #recebe um input e o converte para tipo int
+b = int(input("b: ")) #recebe um input e o converte para tipo int
+c = int(input("c: ")) #recebe um input e o converte para tipo int
+
+print(primeira_raiz(a, b, c)) #exercicio de teste
+
+#c)
+
+def segunda_raiz(a, b, c): #exatamente o mesmo do exercicio b, porém com a segunda raiz
+     discriminante = delta(a, b ,c) #chama a função delta
+     if discriminante < 0:
+         return "Não há raízes reais"
+     else:
+         return (-b - math.sqrt(discriminante))/(2*a) #realiza a conta, mas subtraindo dessa vez
+    
+a = int(input("a: ")) #recebe um input e o converte para tipo int
+b = int(input("b: ")) #recebe um input e o converte para tipo int
+c = int(input("c: ")) #recebe um input e o converte para tipo int
+
+print(segunda_raiz(a, b, c))
+
+#exercicio 3
+
+#b) uma para calcular o numero de termos dados os valores inicial e final e a razao;
+
+def termos_pa(x, y, z): #recebe os termos iniciais, finais e a razão 
+    termos = ((x-y)/z) + 1 #cria uma variavel para efetuar o cálculo
+    return termos #retorna o pedido no enunciado
+
+#c) soma da p.a dados os valores inicial e final e a razao;
+
+def soma_pa(x, y, z): #recebe os termos iniciais, finais e a razão
+     s_pa = ((x + y)*z)/2
+     return s_pa #retorna o pedido no enunciado
+
+
+#exercicio 4
+
+#a) hipotenusa;
+
+def hipotenusa(a, b): #recebe os catetos
+    h = math.sqrt(a**2 + b**2) #cria uma variavel para efetuar o cálculo, chamando a função sqrt do modulo math
+    return h #retorna o pedido no enunciado
+
+#b) distancia entre dois pontos;
+def distancia(Xa, Ya, Xb, Yb): #recebe as coordenadas x e y dos pontos a e b 
+    dist_quad = (Xb - Xa)**2 + (Yb - Ya)**2 #utiliza a formula para obter a distancia
+    return math.sqrt(dist_quad) #retorna o pedido no enunciado
+
+#c) perimetro triangulo reto:
+def perimetro(a, b): #recebe os catetos
+    p = a + b + hipotenusa(a, b) #cria uma variavel para efetuar o cálculo
+    return p #retorna o pedido no enunciado, chamando a funçao hipotenusa para facilitar o calculo
+
+#d) soma dos quadrados dos senos e cossenos:
+
+def soma_seno_cosseno(x): #recebe o angulo
+    seno = (math.sin(x))**2 #obtem o seno atraves do modulo math
+    cosseno = (math.cos(x))**2#obtem o cosseno atraves do modulo math
+    return seno + cosseno #retorna o pedido no enunciado
+
+#e) comprimento do circulo:
+
+def circulo(r): #recebe o raio
+    comprimento = math.pi*r*2 #cria uma variavel para efetuar o cálculo, utilizando a função pi do modulo math
+    return comprimento #retorna o pedido no enunciado, utilizando o pi do modulo math
+
+
+
+#exercicio 5:
+def setor_circular(r, s, a = 360): #recebe o raio, o angulo e o argumento default
+    sc = (s * r**2 * 3.14)/a #cria uma variavel para efetuar o cálculo
+    return sc #retorna a equação do setor circular
+    
+r = float(input('Raio: ')) #recebe o raio como float
+s = input('Angulo: ') #recebe o angulo como str pelo momento, para facilitar caso não seja inserido nada no input
+
+if s.strip() == '': #checa se houve ou não uma inserção no input
+     print(r**2 * 3.14)
+else:
+     try:
+         float_s = float(s) #converte s para float
+         print((setor_circular(r, float_s, a=360))) #chama e executa a função com os valores inseridos
+     except ValueError:
+         print(r**2 * 3.14) #medida preventiva para casos onde s nao possa ser convertido para float, como a inserção de letras ou nenhum caractere inserido
+
+
+#exercicio 6:
+
+def bombom_pedrinho(dinheiro, bombom): #recebe a quantidade de dinheiro e o preço dos bombons
+    b = dinheiro/bombom #cria uma variavel para efetuar o cálculo
+    return b #retorna o pedido no enunciado
+
+
+#exercicio 7 
+def imc(peso,altura): #recebe o peso e a altura 
+    calc = peso/(altura**2) #cria uma variavel para efetuar o cálculo
+    return calc #retorna o pedido no enunciado
+
+
+#exercicio 8
+
+def carros(x):
+    car_need = x // 5 #estabelece a divisao inteira de pessoas por carro, e cria uma variavel para efetuar o cálculo
+    if car_need % 5 != 0: 
+        car_need += 1 #adiciona um carro a mais se o resto for diferente de 0 
+    return car_need #retorna o pedido no enunciado
+
+
+#exercicio 9
+
+def voltas(r, d): #recebe o raio e a distancia
+    circ = d/circulo(r) #cria uma variavel para efetuar o cálculo
+    return circ #retorna o pedido no enunciado, chamando a funçao circulo para facilitar o calculo
+
+
+#exercicio 10
+
+def bolo(a, b, c): #recebe as quantidades a, b e c para trigo, ovos e leites
+    trigo = a // 2 # faz a divisao inteira das unidades de trigo e cria uma variavel para efetuar o cálculo
+    ovos = b // 3 # faz a divisao inteira das unidades de ovos e cria uma variavel para efetuar o cálculo
+    leite = c // 5 # faz a divisao inteira das unidades de leite e cria uma variavel para efetuar o cálculo
+    
+    return min(trigo, ovos, leite) #retorna a quantidade minima de bolos que joao poderá fazer utilizando as medidas exatas
+
+print('João fará', bolo(5, 6, 11), "bolos") #exemplo arbitrário
